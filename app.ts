@@ -36,6 +36,8 @@ app.use("/posts", postsRoute);
 app.use("/subs", subsRouters);
 app.use("/", indexRoute);
 
+app.locals.formatDate = (timestamp: string) => new Date(timestamp).toDateString();
+
 app.listen(PORT, () =>
   console.log(`server should be running at http://localhost:${PORT}/`)
 );

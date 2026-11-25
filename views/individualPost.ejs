@@ -1,25 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.classless.min.css"
-    />
-    <link href="/css/style.css" rel="stylesheet" />
-    <title>Post</title>
-  </head>
-  <body>
-    <main>
-      <div class="authOptions">
-        <h1>View Post</h1>
-        <a role="button" href="/posts">Home</a>
-      </div>
-      <div>
-        <p>Implement this page yourself. It is from individualPost.ejs</p>
-      </div>
-    </main>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.classless.min.css" />
+  <link href="/css/style.css" rel="stylesheet" />
+  <title>Post</title>
+</head>
+
+<body>
+  <main>
+    <div class="authOptions">
+      <h1>View Post</h1>
+      <a role="button" href="/posts">Home</a>
+    </div>
+    <div>
+      <b>
+        <%= post.title %>
+      </b>
+      <p>By <%= post.creator.uname %>
+      </p>
+      <p>
+        <%= post.description %>
+      </p>
+      <a href="<%= post.link %>">Go To Attached Content</a>
+      <p>
+        <%= formatDate(post.timestamp) %>
+      </p>
+      <div class="divider"></div>
+      <b>Comments:</b>
+      <% post.comments.forEach((comment)=> { %>
+        <p>
+          <%= comment.description %>
+        </p>
+        <p>By <%= comment.creator.uname %>
+        </p>
+        <p>
+          <%= formatDate(comment.timestamp) %>
+        </p>
+        <% }) %>
+          <% if (user) { %>
+            <p>You are logged in</p>
+            <form action="/posts/comment-create/<%=post.id%>" method="post">
+              <label for="comment">Add a comment:</label>
+              <div class="comment-entry-box">
+                <input type="text" name="description" id="comment">
+                <button type="submit">Submit</button>
+              </div>
+            </form>
+            <% } %>
+    </div>
+  </main>
+</body>
+
 </html>

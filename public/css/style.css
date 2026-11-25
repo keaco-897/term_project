@@ -3,3 +3,16 @@
   justify-content: space-between;
   align-items: flex-start;
 }
+
+.divider {
+  border-top: 1px solid #ccc;
+  margin: 1rem 0;
+}
+
+.comment-entry-box {
+  display: flex;
+}
+
+.comment-entry-box button {
+  flex: 1;
+}
