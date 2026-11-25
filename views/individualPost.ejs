@@ -25,10 +25,13 @@
       <p>
         <%= post.description %>
       </p>
-      <a href="<%= post.link %>">Go To Attached Content</a>
+      <a href="<%=post.link%>">Go To Attached Content</a>
       <p>
         <%= formatDate(post.timestamp) %>
       </p>
+      <% if (user.id === post.creator.id) { %>
+        <a role="button" href="/posts/edit/<%=post.id%>">Edit Post</a>
+      <% } %>
       <div class="divider"></div>
       <b>Comments:</b>
       <% post.comments.forEach((comment)=> { %>
