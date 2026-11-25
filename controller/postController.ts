@@ -11,10 +11,14 @@ async function getSubs() {
   return db.getSubs();
 }
 
+async function addPost(title: string, link: string, creator: number, description: string, subgroup: string) {
+  return db.addPost(title, link, creator, description, subgroup);
+}
+
 async function addComment(post_id: Number, creator: Number, description: String) {
   return db.addComment(post_id, creator, description);
 }
 
 
 
-export { getPost, getPosts, getSubs, addComment };
+export { getPost, getPosts, getSubs, addPost, addComment };

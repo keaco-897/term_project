@@ -16,7 +16,10 @@ router.get("/create", ensureAuthenticated, (req, res) => {
 });
 
 router.post("/create", ensureAuthenticated, async (req, res) => {
-  // ⭐ TODO
+  const {title, description, link, sub} = req.body;
+  const user = await req.user;
+  const post = await database.addPost(title, description, user.id, link, sub)
+  res.redirect(`/posts/show/${post.id}`)
 });
 
 router.get("/show/:postid", async (req, res) => {
