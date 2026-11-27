@@ -57,11 +57,27 @@ router.post("/edit/:postid", ensureAuthenticated, async (req, res) => {
 });
 
 router.get("/deleteconfirm/:postid", ensureAuthenticated, async (req, res) => {
-  // ⭐ TODO
+  const post_id = req.params.postid;
+  const post = await database.getPost(post_id);
+  const user = await req.user;
+  if (post.creator.id !== user.id) {
+    res.redirect(`/posts/show/${post_id}`);
+    return;
+  }
+  res.render("deleteConfirm", { post });
 });
 
 router.post("/delete/:postid", ensureAuthenticated, async (req, res) => {
-  // ⭐ TODO
+  const post_id = req.params.postid;
+  const {deletionConfirmed} = req.body;
+  if (deletionConfirmed) {
+    const post = await database.getPost(post_id)
+    const postSub = post.subgroup
+    await database.deletePost(post_id);
+    res.redirect(`/subs/show/${postSub}`);
+  } else {
+    res.redirect(`/posts/show/${post_id}`);
+  }
 });
 
 router.post(

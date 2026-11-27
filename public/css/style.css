@@ -16,3 +16,16 @@
 .comment-entry-box button {
   flex: 1;
 }
+
+.rejectButton {
+  width: 14em;
+  font-size: 1.3em;
+  margin: 0.3em auto;
+}
+
+.warningButton {
+  background-color: rgb(203, 128, 128);
+  border-color: red;
+  width: 12em;
+  margin: 0.6em auto;
+}

@@ -19,10 +19,15 @@ async function editPost(post_id: string, changes = {}) {
   return db.editPost(post_id, changes);
 }
 
+async function deletePost(post_id: string) {
+  return db.deletePost(post_id);
+}
+
 async function addComment(post_id: string, creator: string, description: string) {
   return db.addComment(post_id, creator, description);
 }
 
 
 
-export { getPost, getPosts, getSubs, addPost, editPost, addComment };
+
+export { getPost, getPosts, getSubs, addPost, editPost, deletePost, addComment, };

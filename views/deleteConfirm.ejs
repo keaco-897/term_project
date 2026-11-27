@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.classless.min.css" />
+  <link href="/css/style.css" rel="stylesheet" />
+  <title>DeleteConfirm</title>
+</head>
+
+<body>
+  <main>
+    <div class="authOptions">
+      <h1>Confirm Post Deletion</h1>
+      <a role="button" href="/posts">Home</a>
+    </div>
+    <div class="box">
+      <p>Are you sure you would like to delete the post "<%= post.title %>"? This action cannot be reversed</p>
+      <form action="/posts/delete/<%=post.id%>" method="post">
+        <button type="submit" name="deletionConfirmed" value="true" class="rejectButton">Back to Subgroup</button>
+        <button type="submit" name="deletionConfirmed" value="true" class="warningButton">Delete this post</button>
+      </form>
+    </div>
+  </main>
+</body>
+
+</html>
